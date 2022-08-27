@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+}
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER  */
+.header {
+    box-sizing: border-box;
+    height: 70px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    
+}
+
+#sidebarIcon {
+    background-image: url(83d46a9470488c58c331.png);
+    width: 30px;
+    height: 30px;
+}
+
+
+/* MAIN PAGE */
+
+.content { 
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.sidebar {
+    width: 25%;
+    height: 100%;
+    border: 2px solid orange;
+    background-color: blue;
+}
+
+.projects {
+    width: 100%;
+    height: 100%;
+    border: 2px solid blue
+}
+
+.hidden{
+     top:0;
+    left:0;
+    pointer-events: none !important;
+    position: absolute !important;
+    max-height:0 !important;
+
+     /* do nth but avoid opacity transition when position absolute */
+     transition: max-height 1s ease-out !important;    
+    opacity: 0 !important; 
+    
+}
