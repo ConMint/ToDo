@@ -2,7 +2,7 @@
 
 const addProjBtn = document.getElementById('addProjBtn');
 const currentProj = document.querySelector('.currentProj');
-currentProj.innerText = '';
+currentProj.innerText = 'All Tasks';
 
 
 
