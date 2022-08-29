@@ -1,4 +1,4 @@
-import { create } from "lodash";
+
 
 const currentProj = document.querySelector('.currentProj');
 
@@ -42,9 +42,10 @@ function addTask () {
     const title = prompt('title?');
     const description = prompt('desc?');
     const dueDate = prompt('due?');
+    
     const priority = prompt('priority?');
     const parentProj = currentProj.innerText;
-    const taskToAdd = new Task(title,description,dueDate,priority,parentProj);
+    const taskToAdd = new Task(title,description,dueDate.toLowerCase(),priority,parentProj);
     tasklist.push(taskToAdd);
     showTasks();
 }
@@ -54,6 +55,20 @@ function showTasks () {
 
     for (let i=0; i < tasklist.length;i++) {
         createTask(tasklist[i])
+        
+        
+
+    }
+
+
+}
+
+function showTodaysTasks () {
+    listOfTasks.innerHTML = '';
+    const todayTaskList = tasklist.filter(task => task.dueDate === 'today');
+
+    for (let i=0; i < todayTaskList.length;i++) {
+        createTask(todayTaskList[i])
         
         
 
@@ -84,4 +99,4 @@ function createTask (item){
    listOfTasks.appendChild(newTask)
 
 }
-export {appendAddTask,tasklist, showTasks}
+export {appendAddTask,tasklist, showTasks,showTodaysTasks}

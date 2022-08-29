@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import '/src/style.css'
 import { addProject, showProjects, addProjBtn,} from './createProject';
-import {appendAddTask,addTask,tasklist, showTasks} from './createTask.js';
+import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks} from './createTask.js';
 
 const currentProj = document.querySelector('.currentProj');
 currentProj.innerText = 'All Tasks';
@@ -25,6 +25,13 @@ const allTasks = document.getElementById('allTasks');
 allTasks.addEventListener('click', function () {
     showTasks();
     currentProj.innerText = 'All Tasks';
+    
+});
+
+const todayTasks = document.getElementById('todayTasks');
+todayTasks.addEventListener('click', function () {
+    showTodaysTasks();
+    currentProj.innerText = "Today's Tasks";
     
 });
 
