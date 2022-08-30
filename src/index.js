@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import '/src/style.css'
 import { addProject, showProjects, addProjBtn,} from './createProject';
-import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks} from './createTask.js';
+import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks} from './createTask.js';
 
 const currentProj = document.querySelector('.currentProj');
 currentProj.innerText = 'All Tasks';
@@ -13,10 +13,15 @@ document.addEventListener('click', function checkClick(event) {
     const isProj = event.target.classList.contains('indivProject');
     const isHome = event.target.classList.contains('subHeaders')
     if (isProj === true && document.getElementById('addTaskBtn') === null) {
-        showTasks();
+        showProjectTasks();
         appendAddTask();
-    }  else if (isHome === true) {
-        main.removeChild(addTaskBtn);
+    } else if (isProj === true) {
+        showProjectTasks();
+    } else if (isHome === true) {
+        if (document.getElementById('addTaskBtn')) {
+            main.removeChild(addTaskBtn);
+        }
+        
         
     }
 })
@@ -32,6 +37,13 @@ const todayTasks = document.getElementById('todayTasks');
 todayTasks.addEventListener('click', function () {
     showTodaysTasks();
     currentProj.innerText = "Today's Tasks";
+    
+});
+
+const importantTasks = document.getElementById('importantTasks');
+importantTasks.addEventListener('click', function () {
+    showImportantTasks();
+    currentProj.innerText = "Important Tasks";
     
 });
 

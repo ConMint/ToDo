@@ -15,7 +15,7 @@ let tasklist = [
     {
         title: 'Walk Dog',
         description: 'Take dog oot',
-        dueDate: 'Today',
+        dueDate: 'today',
         priority: 'Not important',
         parentProj: 'Everyday Tasks'
     },
@@ -47,7 +47,7 @@ function addTask () {
     const parentProj = currentProj.innerText;
     const taskToAdd = new Task(title,description,dueDate.toLowerCase(),priority,parentProj);
     tasklist.push(taskToAdd);
-    showTasks();
+    showProjectTasks();
 }
 
 function showTasks () {
@@ -65,15 +65,50 @@ function showTasks () {
 
 function showTodaysTasks () {
     listOfTasks.innerHTML = '';
-    const todayTaskList = tasklist.filter(task => task.dueDate === 'today');
+    // const todayTaskList = tasklist.filter(task => task.dueDate === 'today');
 
-    for (let i=0; i < todayTaskList.length;i++) {
-        createTask(todayTaskList[i])
+    for (let i=0; i < tasklist.length;i++) {
+        if (tasklist[i].dueDate === 'today') {
+            createTask(tasklist[i])
+        }
+        
         
         
 
     }
 
+
+}
+
+function showProjectTasks () {  
+    listOfTasks.innerHTML = '';
+    
+
+    for (let i=0; i < tasklist.length;i++) {
+        if (tasklist[i].parentProj === currentProj.innerText) {
+            createTask(tasklist[i])
+        }
+        
+        
+        
+
+    }
+
+}
+
+function showImportantTasks () {  
+    listOfTasks.innerHTML = '';
+    
+
+    for (let i=0; i < tasklist.length;i++) {
+        if (tasklist[i].priority === 'important') {
+            createTask(tasklist[i])
+        }
+        
+        
+        
+
+    }
 
 }
 
@@ -99,4 +134,4 @@ function createTask (item){
    listOfTasks.appendChild(newTask)
 
 }
-export {appendAddTask,tasklist, showTasks,showTodaysTasks}
+export {appendAddTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks}
