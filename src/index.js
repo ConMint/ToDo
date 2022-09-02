@@ -1,10 +1,14 @@
 import _ from 'lodash';
 import '/src/style.css'
 import { addProject, showProjects, addProjBtn,} from './createProject';
-import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks} from './createTask.js';
+import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks}
+ from './createTask.js';
+
+
 
 const currentProj = document.querySelector('.currentProj');
 currentProj.innerText = 'All Tasks';
+
 
 showProjects();
 
@@ -55,4 +59,20 @@ const sidebar = document.querySelector('.sidebar');
 sidebarIcon.addEventListener('click', () => {
     sidebar.classList.toggle('hidden');
 })
+
+
+function openTheForm() {
+    document.getElementById("popupForm").style.display = "block";
+    document.getElementById("page-mask").style.display = "block";
+    document.getElementById("newTaskPop").style.display = "block";
+  }
+
+  
+
+  
+  function closeTheForm() {
+    document.getElementById("popupForm").style.display = "none";
+    document.getElementById("page-mask").style.display = "none";
+    document.getElementById("newTaskPop").style.display = "none";
+  }
 

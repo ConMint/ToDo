@@ -1,6 +1,28 @@
 
 
+function openTheForm() {
+    document.getElementById("popupForm").style.display = "block";
+    document.getElementById("page-mask").style.display = "block";
+    document.getElementById("newTaskPop").style.display = "block";
+  }
+
+ openTheForm();
+
+  
+  function closeTheForm() {
+    document.getElementById("popupForm").style.display = "none";
+    document.getElementById("page-mask").style.display = "none";
+    document.getElementById("newTaskPop").style.display = "none";
+  }
+
+
+
 const currentProj = document.querySelector('.currentProj');
+
+document.getElementById("submit").addEventListener("click", function(event){
+    event.preventDefault();
+    addTask();
+  });
 
 function appendAddTask () {
     const main = document.querySelector('.main');
@@ -8,7 +30,9 @@ function appendAddTask () {
     addTaskBtn.setAttribute('id','addTaskBtn');
     addTaskBtn.innerText = 'Add Task';
     main.appendChild(addTaskBtn);
-    addTaskBtn.addEventListener('click',addTask);
+    addTaskBtn.addEventListener('click', () => {
+        openTheForm();
+    });
 }
 
 let tasklist = [
@@ -39,15 +63,18 @@ class Task {
 }
 
 function addTask () {
-    const title = prompt('title?');
-    const description = prompt('desc?');
-    const dueDate = prompt('due?');
+    const title = form.title.value
+    const description = form.details.value
+    const dueDate = form.date.value
     
-    const priority = prompt('priority?');
+    const priority = form.priority.value
     const parentProj = currentProj.innerText;
     const taskToAdd = new Task(title,description,dueDate.toLowerCase(),priority,parentProj);
     tasklist.push(taskToAdd);
     showProjectTasks();
+    form.reset();
+    closeTheForm();
+
 }
 
 function showTasks () {

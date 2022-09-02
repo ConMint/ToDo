@@ -123,3 +123,90 @@ hr {
 }
 
 
+#page-mask {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+  }
+
+
+#formHeader,
+strong {
+    color: #e67977d3;
+
+} 
+
+#formHeader {
+    font-size: 30px;
+}
+
+  .newTaskPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    width: 100%;
+    display: none;
+    z-index: 9;
+  }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+  }
+  .formContainer {
+    max-width: 300px;
+    padding: 20px;
+    background-color: #F6BD60;;
+  }
+  .formContainer input[type=text],
+   .formContainer input[type=number],
+   .formContainer > select{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+  }
+
+  .formContainer input[type=submit]{
+    width: 40%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+    border-radius: 10px;
+    color: #e67977d3;
+    font-size: 15px;
+    font-weight: bold;
+
+  }
+  .formContainer input[type=text]:focus{
+    background-color: #ddd;
+    outline: none;
+  }
+  .formContainer .btn {
+    padding: 12px 20px;
+    border: none;
+    background-color: #8ebf42;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 15px;
+    opacity: 0.8;
+  }
+  .formContainer .cancel {
+    background-color: #cc0000;
+  }
+  .formContainer .btn:hover{
+    opacity: 1;
+  }

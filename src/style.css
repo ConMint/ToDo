@@ -122,3 +122,89 @@ hr {
     
 }
 
+
+#page-mask {
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 8;
+  }
+
+
+#formHeader,
+strong {
+    color: black
+
+} 
+
+#formHeader {
+    font-size: 30px;
+}
+
+  .newTaskPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    width: 100%;
+    display: none;
+    z-index: 9;
+  }
+  .formPopup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, 5%);
+    border: 3px solid #999999;
+    z-index: 9;
+  }
+  .formContainer {
+    width: 500px;
+    padding: 20px;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .formContainer input[type=text],
+   .formContainer input[type=number],
+   .formContainer input[type=date],
+   .formContainer > select{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+    
+  }
+
+  .formContainer input[type=submit]{
+    width: 40%;
+    padding: 15px;
+    margin: 5px 0 20px 0;
+    border: none;
+    background: #eee;
+    border-radius: 10px;
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+
+  }
+  .formContainer input[type=text]:focus{
+    background-color: #ddd;
+    outline: none;
+  }
+  
+
+
+
+  #dateForm {
+    width: 100px;
+  }
+
+ 
