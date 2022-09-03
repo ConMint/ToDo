@@ -1,3 +1,6 @@
+import { differenceInCalendarDays } from "date-fns"
+
+
 
 
 function openTheForm() {
@@ -6,7 +9,7 @@ function openTheForm() {
     document.getElementById("newTaskPop").style.display = "block";
   }
 
- openTheForm();
+ 
 
   
   function closeTheForm() {
@@ -39,14 +42,14 @@ let tasklist = [
     {
         title: 'Walk Dog',
         description: 'Take dog oot',
-        dueDate: 'today',
+        dueDate: '2022,09,03',
         priority: 'Not important',
         parentProj: 'Everyday Tasks'
     },
     {
         title: 'Walk Cat',
         description: 'Take cat oot',
-        dueDate: 'Tomoz',
+        dueDate: '2022,09,03',
         priority: 'Important',
         parentProj: 'Fun Tasks'
     }
@@ -92,51 +95,44 @@ function showTasks () {
 
 function showTodaysTasks () {
     listOfTasks.innerHTML = '';
-    // const todayTaskList = tasklist.filter(task => task.dueDate === 'today');
-
+    
     for (let i=0; i < tasklist.length;i++) {
-        if (tasklist[i].dueDate === 'today') {
-            createTask(tasklist[i])
-        }
-        
-        
-        
-
+        if (isToday(new Date(tasklist[i].dueDate)) === true) {
+            createTask(tasklist[i])   
+        }     
     }
-
-
 }
+
+function showWeekTasks () {
+    listOfTasks.innerHTML = '';
+    
+    for (let i=0; i < tasklist.length;i++) {
+        if (differenceInCalendarDays(new Date(tasklist[i].dueDate),new Date(),) <= 7) {
+            createTask(tasklist[i]);
+        }     
+    }
+}
+
+
 
 function showProjectTasks () {  
     listOfTasks.innerHTML = '';
     
-
     for (let i=0; i < tasklist.length;i++) {
         if (tasklist[i].parentProj === currentProj.innerText) {
             createTask(tasklist[i])
-        }
-        
-        
-        
-
+        }  
     }
-
 }
 
 function showImportantTasks () {  
     listOfTasks.innerHTML = '';
     
-
     for (let i=0; i < tasklist.length;i++) {
         if (tasklist[i].priority === 'important') {
             createTask(tasklist[i])
         }
-        
-        
-        
-
     }
-
 }
 
 function createTask (item){
@@ -156,9 +152,18 @@ function createTask (item){
     })
     newTask.appendChild(delBtn);
     
-
-
    listOfTasks.appendChild(newTask)
-
 }
-export {appendAddTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks}
+
+// Function to get today's date for Show Todays Tasks
+function isToday(date) {
+    const today = new Date();
+    
+    if (today.toDateString() === date.toDateString()) {
+      return true;
+    } else
+  
+    return false;
+  }
+
+export {appendAddTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}

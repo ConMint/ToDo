@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import '/src/style.css'
 import { addProject, showProjects, addProjBtn,} from './createProject';
-import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks}
+import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}
  from './createTask.js';
+
 
 
 
@@ -44,6 +45,13 @@ todayTasks.addEventListener('click', function () {
     
 });
 
+const nextWeekTasks = document.getElementById('nextWeekTasks');
+nextWeekTasks.addEventListener('click', function () {
+    showWeekTasks();
+    currentProj.innerText = "Today's Tasks";
+    
+});
+
 const importantTasks = document.getElementById('importantTasks');
 importantTasks.addEventListener('click', function () {
     showImportantTasks();
@@ -61,18 +69,6 @@ sidebarIcon.addEventListener('click', () => {
 })
 
 
-function openTheForm() {
-    document.getElementById("popupForm").style.display = "block";
-    document.getElementById("page-mask").style.display = "block";
-    document.getElementById("newTaskPop").style.display = "block";
-  }
+
 
   
-
-  
-  function closeTheForm() {
-    document.getElementById("popupForm").style.display = "none";
-    document.getElementById("page-mask").style.display = "none";
-    document.getElementById("newTaskPop").style.display = "none";
-  }
-

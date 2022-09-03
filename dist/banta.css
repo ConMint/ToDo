@@ -137,7 +137,7 @@ hr {
 
 #formHeader,
 strong {
-    color: #e67977d3;
+    color: black
 
 } 
 
@@ -164,18 +164,23 @@ strong {
     z-index: 9;
   }
   .formContainer {
-    max-width: 300px;
+    width: 500px;
     padding: 20px;
-    background-color: #F6BD60;;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    
   }
   .formContainer input[type=text],
    .formContainer input[type=number],
+   .formContainer input[type=date],
    .formContainer > select{
     width: 100%;
     padding: 15px;
     margin: 5px 0 20px 0;
     border: none;
     background: #eee;
+    
   }
 
   .formContainer input[type=submit]{
@@ -185,7 +190,7 @@ strong {
     border: none;
     background: #eee;
     border-radius: 10px;
-    color: #e67977d3;
+    color: black;
     font-size: 15px;
     font-weight: bold;
 
@@ -194,19 +199,12 @@ strong {
     background-color: #ddd;
     outline: none;
   }
-  .formContainer .btn {
-    padding: 12px 20px;
-    border: none;
-    background-color: #8ebf42;
-    color: #fff;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 15px;
-    opacity: 0.8;
+  
+
+
+
+  #dateForm {
+    width: 100px;
   }
-  .formContainer .cancel {
-    background-color: #cc0000;
-  }
-  .formContainer .btn:hover{
-    opacity: 1;
-  }
+
+ 
