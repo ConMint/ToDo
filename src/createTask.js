@@ -1,7 +1,14 @@
-import { differenceInCalendarDays } from "date-fns"
+import { differenceInCalendarDays } from "date-fns";
+import { indexOf } from "lodash";
 
 
+let objIndex = null;
+let oldPP = null;
 
+
+document.addEventListener('click', function checkAttr(event) {
+    console.log(event.target.dataProject)
+});
 
 function openTheForm() {
     document.getElementById("popupForm").style.display = "block";
@@ -23,8 +30,10 @@ function openTheForm() {
 const currentProj = document.querySelector('.currentProj');
 
 document.getElementById("submit").addEventListener("click", function(event){
-    event.preventDefault();
-    addTask();
+    if (document.getElementById('form').checkValidity()) {
+        event.preventDefault();
+        addTask();
+     }
   });
 
 function appendAddTask () {
@@ -66,25 +75,62 @@ class Task {
 }
 
 function addTask () {
-    const title = form.title.value
-    const description = form.details.value
-    const dueDate = form.date.value
+    const title = form.title.value;
+    const description = form.details.value;
+    const dueDate = form.date.value;
     
-    const priority = form.priority.value
-    const parentProj = currentProj.innerText;
-    const taskToAdd = new Task(title,description,dueDate.toLowerCase(),priority,parentProj);
-    tasklist.push(taskToAdd);
-    showProjectTasks();
-    form.reset();
-    closeTheForm();
+    const priority = form.priority.value;
+    let parentProj;
+
+    if (oldPP === null) {
+        parentProj = currentProj.innerText
+    } else {
+        parentProj = oldPP;
+        oldPP = null;
+    }
+    
+    
+    const taskToAdd = new Task(title,description,dueDate,priority,parentProj);
+    if (objIndex === null) {
+        tasklist.push(taskToAdd);
+        showProjectTasks();
+        form.reset();
+        closeTheForm();
+    } else {
+        tasklist.splice(objIndex,1, taskToAdd);
+        objIndex = null;
+        if (currentProj.innerText === 'All Tasks') {
+            
+            showTasks();
+        } else if (currentProj.innerText === 'Today') {
+            
+            showTodaysTasks();
+        } else if (currentProj.innerText === 'Next 7 Days') {
+            
+            showWeekTasks;
+        } else if (currentProj.innerText === 'Important') {
+            
+            showImportantTasks();
+        } else {
+            
+            showProjectTasks();
+        }
+        form.reset();
+        closeTheForm();
+
+    }
+    
 
 }
+
+
 
 function showTasks () {
     listOfTasks.innerHTML = '';
 
     for (let i=0; i < tasklist.length;i++) {
         createTask(tasklist[i])
+        
         
         
 
@@ -107,8 +153,9 @@ function showWeekTasks () {
     listOfTasks.innerHTML = '';
     
     for (let i=0; i < tasklist.length;i++) {
-        if (differenceInCalendarDays(new Date(tasklist[i].dueDate),new Date(),) <= 7) {
+        if (differenceInCalendarDays(new Date(tasklist[i].dueDate),new Date()) <= 7 && differenceInCalendarDays(new Date(tasklist[i].dueDate),new Date()) >= 0 ) {
             createTask(tasklist[i]);
+            console.log(differenceInCalendarDays(new Date(tasklist[i].dueDate),new Date()))
         }     
     }
 }
@@ -118,7 +165,9 @@ function showWeekTasks () {
 function showProjectTasks () {  
     listOfTasks.innerHTML = '';
     
+    
     for (let i=0; i < tasklist.length;i++) {
+        
         if (tasklist[i].parentProj === currentProj.innerText) {
             createTask(tasklist[i])
         }  
@@ -146,11 +195,38 @@ function createTask (item){
     const delBtn = document.createElement('button');
     delBtn.textContent = 'Delete';
     delBtn.addEventListener('click', () => {
-        tasklist.splice(tasklist.indexOf(item),1);
-        showTasks();
-        console.log(tasklist);
+        if (currentProj.innerText === 'All Tasks') {
+            tasklist.splice(tasklist.indexOf(item),1);
+            showTasks();
+        } else if (currentProj.innerText === 'Today') {
+            tasklist.splice(tasklist.indexOf(item),1);
+            showTodaysTasks();
+        } else if (currentProj.innerText === 'Next 7 Days') {
+            tasklist.splice(tasklist.indexOf(item),1);
+            showWeekTasks;
+        } else if (currentProj.innerText === 'Important') {
+            tasklist.splice(tasklist.indexOf(item),1);
+            showImportantTasks();
+        } else {
+            tasklist.splice(tasklist.indexOf(item),1);
+            showProjectTasks();
+        }
+    })
+    const editBtn = document.createElement('button');
+    editBtn.textContent = 'Edit';
+    editBtn.addEventListener('click', () => {
+        objIndex = tasklist.indexOf(item);
+        
+        openTheForm();
+        form.title.value = item.title;
+        form.details.value = item.description;
+        form.date.value = item.dueDate;
+        form.priority.value = item.priority;
+        oldPP = item.parentProj;
+
     })
     newTask.appendChild(delBtn);
+    newTask.appendChild(editBtn);
     
    listOfTasks.appendChild(newTask)
 }

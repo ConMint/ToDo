@@ -8,7 +8,7 @@ import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTas
 
 
 const currentProj = document.querySelector('.currentProj');
-currentProj.innerText = 'All Tasks';
+currentProj.innerText = 'Welcome back';
 
 
 showProjects();
@@ -41,21 +41,21 @@ allTasks.addEventListener('click', function () {
 const todayTasks = document.getElementById('todayTasks');
 todayTasks.addEventListener('click', function () {
     showTodaysTasks();
-    currentProj.innerText = "Today's Tasks";
+    currentProj.innerText = "Today";
     
 });
 
 const nextWeekTasks = document.getElementById('nextWeekTasks');
 nextWeekTasks.addEventListener('click', function () {
     showWeekTasks();
-    currentProj.innerText = "Today's Tasks";
+    currentProj.innerText = "Next 7 Days";
     
 });
 
 const importantTasks = document.getElementById('importantTasks');
 importantTasks.addEventListener('click', function () {
     showImportantTasks();
-    currentProj.innerText = "Important Tasks";
+    currentProj.innerText = "Important";
     
 });
 

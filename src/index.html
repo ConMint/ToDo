@@ -13,24 +13,24 @@
         <div id="page-mask"></div>
         <div class="newTaskPopup" id="newTaskPop">
             <div class = 'formPopup' id="popupForm">
-                <form id="form" class="formContainer" onsubmit="addTask(); return false;">
+                <form id="form" class="formContainer" >
                 <h2 id="formHeader">Add a new task</h2>
                 <label for="title">
                     <strong>Title</strong>
                 </label>
-                <input type="text" id="titleForm" name = 'title' required = 'yes'>
+                <input type="text" id="titleForm" name = 'title' required>
                 <label for="details">
                     <strong>Details</strong>
                 </label>
-                <input type="text" id="detailsForm" name = 'details' required = 'yes'>
+                <input type="text" id="detailsForm" name = 'details' required>
                 <label for="date">
                     <strong>Due date</strong>
                 </label>
-                <input type="date" id="dateForm" name = 'date' required = 'yes'>
+                <input type="date" id="dateForm" name = 'date' required>
                 <label for="priority">
                     <strong>Is it important?</strong>
                 </label>
-                    <select name="priority" required="yes">
+                    <select name="priority" required>
                         <option value= 'yes' >Yes</option>
                         <option value= 'no' >No</option>
                     </select>
@@ -67,7 +67,7 @@
                 
             </div>
             <div class="main">
-                <div class="currentProj">All Tasks</div>
+                <div class="currentProj"></div>
                 <div id = 'listOfTasks'>
                     
                 </div>

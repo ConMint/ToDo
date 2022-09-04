@@ -1,3 +1,4 @@
+import { indexOf } from "lodash";
 
 
 const addProjBtn = document.getElementById('addProjBtn');
@@ -27,11 +28,12 @@ class Project {
 
 function addProject () {
     const name = prompt('Project name?');
-    const projToAdd = new Project(name, name);
+    const projToAdd = new Project(name, projectList.length);
     projectList.push(projToAdd);
+    
     showProjects();
     
-    console.log(projectList);
+    
     
     
 }
@@ -40,7 +42,9 @@ function addProject () {
 
         listOfProj.innerHTML = '';
         for (let i=0; i < projectList.length;i++) {
-            createProject(projectList[i])
+            createProject(projectList[i]);
+            
+            
             
             
 
@@ -56,7 +60,6 @@ function addProject () {
         newProj.classList.add('indivProject');
 
         newProj.textContent = item.name;
-        newProj.setAttribute('data-project',item.dataProject);
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
         delBtn.addEventListener('click', () => {
@@ -64,6 +67,7 @@ function addProject () {
             showProjects();
         })
         newProj.appendChild(delBtn);
+        
         
 
 
@@ -87,4 +91,4 @@ function addProject () {
     }
 
 
-export {addProject, showProjects, addProjBtn}
+export {addProject, showProjects, addProjBtn, projectList}
