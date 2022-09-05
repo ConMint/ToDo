@@ -6,9 +6,6 @@ let objIndex = null;
 let oldPP = null;
 
 
-document.addEventListener('click', function checkAttr(event) {
-    console.log(event.target.dataProject)
-});
 
 function openTheForm() {
     document.getElementById("popupForm").style.display = "block";
@@ -184,11 +181,24 @@ function showImportantTasks () {
     }
 }
 
+export default function deleteProjectTasks () {
+    
+        for (let i=0; i < tasklist.length;i++) {
+        
+        if (tasklist[i].parentProj === currentProj.innerText) {
+            tasklist.splice(tasklist[i],1);
+            
+            
+        }  
+    }
+}
+
 function createTask (item){
     const listOfTasks = document.getElementById('listOfTasks');
 
     const newTask = document.createElement('div');
     newTask.classList.add('indivTask');
+    
 
     newTask.textContent = item.title + item.description + item.priority + item.dueDate;
     newTask.setAttribute('parent-project',item.parentProj);
@@ -229,6 +239,7 @@ function createTask (item){
     newTask.appendChild(editBtn);
     
    listOfTasks.appendChild(newTask)
+//    taskHing();
 }
 
 // Function to get today's date for Show Todays Tasks
@@ -241,5 +252,7 @@ function isToday(date) {
   
     return false;
   }
+
+
 
 export {appendAddTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}

@@ -1,11 +1,10 @@
 import { indexOf } from "lodash";
+import deleteProjectTasks, { showTasks } from "./createTask";
+
 
 
 const addProjBtn = document.getElementById('addProjBtn');
 const currentProj = document.querySelector('.currentProj');
-currentProj.innerText = 'All Tasks';
-
-
 
 let projectList = [
     {
@@ -36,6 +35,7 @@ function addProject () {
     
     
     
+    
 }
  
  function showProjects () {
@@ -49,9 +49,11 @@ function addProject () {
             
 
         }
-        changeMain();
 
-    }
+        
+            changeMain();
+            
+        };
 
     function createProject (item) {
         const listOfProj = document.getElementById('listOfProj');
@@ -64,9 +66,24 @@ function addProject () {
         delBtn.textContent = 'Delete';
         delBtn.addEventListener('click', () => {
             projectList.splice(projectList.indexOf(item),1);
-            showProjects();
+            
+            currentProj.innerText = item.name;
+            deleteProjectTasks();
+            if (typeof addTaskBtn !== 'undefined') {
+            document.querySelector('.main').removeChild(addTaskBtn);
+            }
+            document.getElementById('listOfTasks').innerHTML = '';
+            showProjects(); 
+            
+            
+            
+
         })
+        const editBtn = document.createElement('button');
+        editBtn.textContent = 'Edit';
+        editBtn.setAttribute('id','editProjBtn');
         newProj.appendChild(delBtn);
+        
         
         
 
@@ -74,21 +91,24 @@ function addProject () {
        listOfProj.appendChild(newProj)
 
 
-
+        
     }
 
     function changeMain () {
-        
         document.querySelectorAll('.indivProject').forEach(item => {
             item.addEventListener('click', () => {
-                currentProj.innerText = item.innerText.slice(0,-6);
-                let activeProject = currentProj.innerText;
-
-                console.log(activeProject)
+                if (typeof item != 'button') {
+                    currentProj.innerText = item.innerText.slice(0,-6);
+                    
+    
+                }
+                
+                
             })
         })
-
     }
+    
 
 
+ 
 export {addProject, showProjects, addProjBtn, projectList}

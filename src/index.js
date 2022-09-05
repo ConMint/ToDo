@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import '/src/style.css'
-import { addProject, showProjects, addProjBtn,} from './createProject';
-import {appendAddTask,addTask,tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}
+import { addProject, showProjects, addProjBtn} from './createProject';
+import {appendAddTask,addTask,showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}
  from './createTask.js';
 
 
