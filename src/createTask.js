@@ -49,14 +49,14 @@ let tasklist = [
         title: 'Walk Dog',
         description: 'Take dog oot',
         dueDate: '2022,09,03',
-        priority: 'Not important',
+        priority: 'Important',
         parentProj: 'Everyday Tasks'
     },
     {
         title: 'Walk Cat',
         description: 'Take cat oot',
         dueDate: '2022,09,03',
-        priority: 'Important',
+        priority: 'Not important',
         parentProj: 'Fun Tasks'
     }
 ];
@@ -175,7 +175,7 @@ function showImportantTasks () {
     listOfTasks.innerHTML = '';
     
     for (let i=0; i < tasklist.length;i++) {
-        if (tasklist[i].priority === 'important') {
+        if (tasklist[i].priority === 'Important') {
             createTask(tasklist[i])
         }
     }
@@ -239,7 +239,7 @@ function createTask (item){
     newTask.appendChild(editBtn);
     
    listOfTasks.appendChild(newTask)
-//    taskHing();
+
 }
 
 // Function to get today's date for Show Todays Tasks
