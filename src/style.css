@@ -33,6 +33,7 @@ html {
     background-image: url('img/menu.png');
     width: 30px;
     height: 30px;
+    
 }
 
 
@@ -109,6 +110,7 @@ hr {
     align-items: center;
     padding: 20px;
     color: whitesmoke;
+    margin-bottom: 20px;
 }
 
 .hidden{
@@ -209,4 +211,68 @@ strong {
     width: 100px;
   }
 
+ .indivTask {
+  /* border: 2px solid black; */
+  border-radius: 5px;
+  height: 70px;
+  display: flex;
+  margin: 20px;
+  border: 2px solid black;
+  
+ }
+
+ #taskTitle {
+  font-size: 20px;
+  margin-bottom: 5px;
+  margin-top: 10px;
+ } 
+
+ #taskDesc {
+  max-width: 200px;
+  font-style: italic;
  
+ }
+
+ #taskDate {
+  margin-left: auto;
+  margin-right: 25%;
+  margin-top: 15px;
+  
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  border-radius: 20px;
+  width: 100px;
+
+ }
+
+
+
+ .titleAndDesc {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-left: 70px;
+  
+  
+ }
+
+ .taskBtns {
+  height: 30px;
+  width: 60px;
+  margin-right: 20px;
+  margin-top: 15px;
+  border-radius: 20px;
+  background-color: #f76b8a;
+  color: white;
+  border: none;
+ }
+
+ .important {
+  -moz-box-shadow: 0 0 20px #f76b8a; 
+  -webkit-box-shadow: 0 0 5px #f76b8a; 
+  box-shadow: 0 0 10px #ec2f58;
+  border: 2px solid #f76b8a; 
+ }

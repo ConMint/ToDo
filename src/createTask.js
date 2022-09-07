@@ -1,5 +1,5 @@
 import { differenceInCalendarDays } from "date-fns";
-import { indexOf } from "lodash";
+
 
 
 let objIndex = null;
@@ -48,7 +48,7 @@ let tasklist = [
     {
         title: 'Walk Dog',
         description: 'Take dog oot',
-        dueDate: '2022,09,03',
+        dueDate: '2022-09-03',
         priority: 'Important',
         parentProj: 'Everyday Tasks'
     },
@@ -198,11 +198,30 @@ function createTask (item){
 
     const newTask = document.createElement('div');
     newTask.classList.add('indivTask');
+    const taskTitle = document.createElement('div');
+    taskTitle.textContent = item.title;
+    taskTitle.setAttribute('id','taskTitle');
+    const titleAndDesc = document.createElement('div');
+    titleAndDesc.classList.add('titleAndDesc');
+    const taskDesc = document.createElement('div');
+    taskDesc.textContent = item.description;
+    taskDesc.setAttribute('id','taskDesc');
+    const taskDate = document.createElement('div');
+    taskDate.textContent = item.dueDate;
+    taskDate.setAttribute('id','taskDate');
+    titleAndDesc.appendChild(taskTitle);
+    titleAndDesc.appendChild(taskDesc);
+
+    if (item.priority === 'Important') {
+        newTask.classList.add('important');
+    }
     
 
-    newTask.textContent = item.title + item.description + item.priority + item.dueDate;
+
+    // newTask.textContent = item.title + item.description + item.priority + item.dueDate;
     newTask.setAttribute('parent-project',item.parentProj);
     const delBtn = document.createElement('button');
+    delBtn.classList.add('taskBtns');
     delBtn.textContent = 'Delete';
     delBtn.addEventListener('click', () => {
         if (currentProj.innerText === 'All Tasks') {
@@ -224,6 +243,7 @@ function createTask (item){
     })
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit';
+    editBtn.classList.add('taskBtns');
     editBtn.addEventListener('click', () => {
         objIndex = tasklist.indexOf(item);
         
@@ -235,9 +255,15 @@ function createTask (item){
         oldPP = item.parentProj;
 
     })
-    newTask.appendChild(delBtn);
-    newTask.appendChild(editBtn);
     
+    
+    // newTask.appendChild(taskTitle);
+    // newTask.appendChild(taskDesc);
+    newTask.appendChild(titleAndDesc);
+    newTask.appendChild(taskDate);
+    newTask.appendChild(editBtn);
+    newTask.appendChild(delBtn);
+
    listOfTasks.appendChild(newTask)
 
 }
