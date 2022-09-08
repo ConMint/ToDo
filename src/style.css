@@ -37,6 +37,44 @@ html {
 }
 
 
+#sidebarIcon:hover {
+  cursor: pointer;
+}
+
+.line1, .line2, .line3, .line4 {
+  display: flex;
+  gap: 0px;
+}
+
+#homeImg {
+  background-image: url('img/home.png');
+  height: 30px;
+  width: 30px;
+  margin-top: -5px;
+}
+
+#todayImg {
+  background-image: url('img/today.png');
+  height: 30px;
+  width: 30px;
+  margin-top: -5px;
+}
+
+#weekImg {
+  background-image: url('img/week.png');
+  height: 30px;
+  width: 30px;
+  margin-top: -5px;
+}
+
+#starImg {
+  background-image: url('img/star.png');
+  height: 30px;
+  width: 30px;
+  margin-top: -5px;
+}
+
+
 /* MAIN PAGE */
 
 .content { 
@@ -61,22 +99,32 @@ html {
 
 hr {
     width: 100%;
-    background-color: black;
-    border-color: black;
+    background-color: white;
+    border-color: white;
     margin-bottom: 25px;
 }
 
 #projectHeader, #homeHeader {
     font-size: 30px;
     font-weight: bold;
+    color: white;
 }
 
 .subHeaders{
     font-size: 24px;
-    margin-left: 20px;
+    margin-left: 15px;
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color: white;
+}
+
+.subHeaders:hover {
+  cursor: pointer;
+}
+
+#listOfProj:hover {
+  cursor: pointer;
 }
 
 #listOfProj {
@@ -85,7 +133,41 @@ hr {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    color: white;
+    
 }
+
+.indivProject {
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#delProjBtn {
+  border-radius: 20px;
+  background-color: white;
+  
+}
+
+#delProjBtn:hover {
+  cursor: pointer;
+}
+#addProjBtn {
+  background-color: white;
+  margin-left: 30%;
+  
+  border-radius: 20px;
+  margin-top: 30px;
+  height: 40px;
+  width: 100px;
+  font-weight: bold;
+
+}
+
+#addProjBtn:hover {
+  cursor: pointer;
+
+} 
 
 .main {
     display: flex;
@@ -268,6 +350,25 @@ strong {
   background-color: #f76b8a;
   color: white;
   border: none;
+ }
+
+ .taskBtns:hover {
+  cursor: pointer;
+ }
+
+ #addTaskBtn:hover {
+  cursor: pointer;
+ }
+
+ #addTaskBtn {
+  background-color: #f76b8a;
+  width: 160px;
+  height: 40px;
+  margin-left: 45%;
+  border-radius: 20px;
+  margin-top: 30px;
+  color: white;
+  font-size: 14px;
  }
 
  .important {

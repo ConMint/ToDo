@@ -1,5 +1,5 @@
 import { indexOf } from "lodash";
-import deleteProjectTasks, { showTasks } from "./createTask";
+import deleteProjectTasks from "./createTask";
 
 
 
@@ -63,25 +63,28 @@ function addProject () {
 
         newProj.textContent = item.name;
         const delBtn = document.createElement('button');
-        delBtn.textContent = 'Delete';
+        delBtn.textContent = 'X';
+        delBtn.setAttribute('id','delProjBtn')
         delBtn.addEventListener('click', () => {
-            projectList.splice(projectList.indexOf(item),1);
             
             currentProj.innerText = item.name;
+            console.log(currentProj.innerText)
             deleteProjectTasks();
+            projectList.splice(projectList.indexOf(item),1);
+            
+            
+            
             if (typeof addTaskBtn !== 'undefined') {
             document.querySelector('.main').removeChild(addTaskBtn);
             }
             document.getElementById('listOfTasks').innerHTML = '';
+            
             showProjects(); 
             
             
             
 
         })
-        const editBtn = document.createElement('button');
-        editBtn.textContent = 'Edit';
-        editBtn.setAttribute('id','editProjBtn');
         newProj.appendChild(delBtn);
         
         
@@ -97,14 +100,18 @@ function addProject () {
     function changeMain () {
         document.querySelectorAll('.indivProject').forEach(item => {
             item.addEventListener('click', () => {
+            
                 if (typeof item != 'button') {
                     currentProj.innerText = item.innerText.slice(0,-6);
+
+
+                }
                     
     
                 }
                 
                 
-            })
+            )
         })
     }
     

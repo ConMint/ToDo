@@ -49,13 +49,13 @@ let tasklist = [
         title: 'Walk Dog',
         description: 'Take dog oot',
         dueDate: '2022-09-03',
-        priority: 'Important',
+        priority: 'Not important',
         parentProj: 'Everyday Tasks'
     },
     {
         title: 'Walk Cat',
         description: 'Take cat oot',
-        dueDate: '2022,09,03',
+        dueDate: '2022-09-19',
         priority: 'Not important',
         parentProj: 'Fun Tasks'
     }
@@ -186,7 +186,8 @@ export default function deleteProjectTasks () {
         for (let i=0; i < tasklist.length;i++) {
         
         if (tasklist[i].parentProj === currentProj.innerText) {
-            tasklist.splice(tasklist[i],1);
+            const index = tasklist.indexOf(tasklist[i]);
+            tasklist.splice(index,1);
             
             
         }  
