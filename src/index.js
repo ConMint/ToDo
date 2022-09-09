@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import '/src/style.css'
-import { addProject, showProjects, addProjBtn} from './createProject';
-import {appendAddTask,addTask,showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}
+import { addProject, showProjects, addProjBtn, projectList} from './createProject';
+import {appendAddTask,addTask, tasklist, showTasks,showTodaysTasks,showProjectTasks,showImportantTasks,showWeekTasks}
  from './createTask.js';
 
 
@@ -10,6 +10,17 @@ import {appendAddTask,addTask,showTasks,showTodaysTasks,showProjectTasks,showImp
 const currentProj = document.querySelector('.currentProj');
 currentProj.innerText = 'Welcome back';
 
+
+if (localStorage.getItem('storedTasks')) {
+    const storedTasks = JSON.parse(localStorage.getItem('storedTasks'))
+    tasklist = storedTasks;
+    
+}
+if (localStorage.getItem('storedProjects')) {
+    const storedProjects = JSON.parse(localStorage.getItem('storedProjects'));
+    projectList = storedProjects;
+    console.log('yeehaw')
+}
 
 showProjects();
 

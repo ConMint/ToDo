@@ -19,7 +19,7 @@ module.exports = {
       plugins: [
 
         new MiniCssExtractPlugin({
-          filename: 'banta.css',
+          filename: 'style.css',
         }),
 
         new HtmlWebpackPlugin({

@@ -31,6 +31,7 @@ function addProject () {
     projectList.push(projToAdd);
     
     showProjects();
+    localStorage.setItem('storedProjects',JSON.stringify(projectList))
     
     
     
@@ -80,6 +81,7 @@ function addProject () {
             document.getElementById('listOfTasks').innerHTML = '';
             
             showProjects(); 
+            localStorage.setItem('storedProjects',JSON.stringify(projectList))
             
             
             
@@ -101,11 +103,10 @@ function addProject () {
         document.querySelectorAll('.indivProject').forEach(item => {
             item.addEventListener('click', () => {
             
-                if (typeof item != 'button') {
-                    currentProj.innerText = item.innerText.slice(0,-6);
+            currentProj.innerText = item.innerText.slice(0,-2);
 
 
-                }
+            
                     
     
                 }

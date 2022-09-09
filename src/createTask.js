@@ -1,12 +1,12 @@
 import { differenceInCalendarDays } from "date-fns";
 
 
-
+// used in some functions 
 let objIndex = null;
 let oldPP = null;
 
 
-
+//form functions 
 function openTheForm() {
     document.getElementById("popupForm").style.display = "block";
     document.getElementById("page-mask").style.display = "block";
@@ -22,17 +22,24 @@ function openTheForm() {
     document.getElementById("newTaskPop").style.display = "none";
   }
 
-
+document.querySelector('.cancelBtn').addEventListener('click', () => {
+    form.reset();
+    closeTheForm();
+})
 
 const currentProj = document.querySelector('.currentProj');
-
+// prevent early submit of form 
 document.getElementById("submit").addEventListener("click", function(event){
     if (document.getElementById('form').checkValidity()) {
         event.preventDefault();
         addTask();
+        localStorage.setItem('storedTasks',JSON.stringify(tasklist))
+        
+        
      }
   });
 
+  //appends add task button only on project screens 
 function appendAddTask () {
     const main = document.querySelector('.main');
     const addTaskBtn = document.createElement('button');
@@ -44,19 +51,20 @@ function appendAddTask () {
     });
 }
 
+//placeholder tasks 
 let tasklist = [
     {
         title: 'Walk Dog',
-        description: 'Take dog oot',
+        description: 'Take dog out',
         dueDate: '2022-09-03',
         priority: 'Not important',
         parentProj: 'Everyday Tasks'
     },
     {
         title: 'Walk Cat',
-        description: 'Take cat oot',
+        description: 'Take cat out',
         dueDate: '2022-09-19',
-        priority: 'Not important',
+        priority: 'Important',
         parentProj: 'Fun Tasks'
     }
 ];
@@ -71,6 +79,7 @@ class Task {
     }
 }
 
+// function to add task, opens the form and allows editing and inserting at original position 
 function addTask () {
     const title = form.title.value;
     const description = form.details.value;
@@ -121,7 +130,7 @@ function addTask () {
 }
 
 
-
+// functions to show relevant tasks when selecting options in sidebar 
 function showTasks () {
     listOfTasks.innerHTML = '';
 
@@ -181,6 +190,7 @@ function showImportantTasks () {
     }
 }
 
+// function to delete all project tasks when deleting a project
 export default function deleteProjectTasks () {
     
         for (let i=0; i < tasklist.length;i++) {
@@ -188,6 +198,7 @@ export default function deleteProjectTasks () {
         if (tasklist[i].parentProj === currentProj.innerText) {
             const index = tasklist.indexOf(tasklist[i]);
             tasklist.splice(index,1);
+            localStorage.setItem('storedTasks',JSON.stringify(tasklist));
             
             
         }  
@@ -210,6 +221,9 @@ function createTask (item){
     const taskDate = document.createElement('div');
     taskDate.textContent = item.dueDate;
     taskDate.setAttribute('id','taskDate');
+    const taskPriority = document.createElement('button');
+    taskPriority.textContent = item.priority;
+    taskPriority.setAttribute('id','taskPriority');
     titleAndDesc.appendChild(taskTitle);
     titleAndDesc.appendChild(taskDesc);
 
@@ -219,7 +233,7 @@ function createTask (item){
     
 
 
-    // newTask.textContent = item.title + item.description + item.priority + item.dueDate;
+    
     newTask.setAttribute('parent-project',item.parentProj);
     const delBtn = document.createElement('button');
     delBtn.classList.add('taskBtns');
@@ -241,6 +255,7 @@ function createTask (item){
             tasklist.splice(tasklist.indexOf(item),1);
             showProjectTasks();
         }
+        localStorage.setItem('storedTasks',JSON.stringify(tasklist))
     })
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Edit';
@@ -254,16 +269,35 @@ function createTask (item){
         form.date.value = item.dueDate;
         form.priority.value = item.priority;
         oldPP = item.parentProj;
+        localStorage.setItem('storedTasks',JSON.stringify(tasklist))
 
     })
     
     
-    // newTask.appendChild(taskTitle);
-    // newTask.appendChild(taskDesc);
+    
     newTask.appendChild(titleAndDesc);
     newTask.appendChild(taskDate);
     newTask.appendChild(editBtn);
     newTask.appendChild(delBtn);
+    newTask.appendChild(taskPriority);
+
+    taskPriority.addEventListener('click', () => {
+        newTask.classList.toggle('important')
+        if (taskPriority.textContent === 'Important') {
+            taskPriority.textContent = 'Not important';
+            item.priority = 'Not important';
+            localStorage.setItem('storedTasks',JSON.stringify(tasklist))
+            
+        } else {
+            taskPriority.textContent = 'Important';
+            item.priority = 'Important';
+            localStorage.setItem('storedTasks',JSON.stringify(tasklist))
+            
+        }
+        if (currentProj.innerText === 'Important') {
+            showImportantTasks();
+        }
+    })
 
    listOfTasks.appendChild(newTask)
 
