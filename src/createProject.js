@@ -6,6 +6,7 @@ import deleteProjectTasks from "./createTask";
 const addProjBtn = document.getElementById('addProjBtn');
 const currentProj = document.querySelector('.currentProj');
 
+
 let projectList = [
     {
         name: 'Everyday Tasks',
